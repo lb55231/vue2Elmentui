@@ -6,17 +6,12 @@
         <router-view :key="key" class="app-main-height" />
       </keep-alive>
     </transition>
-    <footer v-show="footerCopyright" class="footer-copyright">
-      Copyright
-      <vab-icon :icon="['fas', 'copyright']"></vab-icon>
-      vue-admin-better 开源免费版 {{ fullYear }}
-    </footer>
   </div>
 </template>
 
 <script>
   import { mapActions, mapGetters } from 'vuex'
-  import { copyright, footerCopyright, keepAliveMaxNum, title } from '@/config'
+  import { copyright, keepAliveMaxNum, title } from '@/config'
 
   export default {
     name: 'VabAppMain',
@@ -28,7 +23,6 @@
         title,
         keepAliveMaxNum,
         routerView: true,
-        footerCopyright,
       }
     },
     computed: {

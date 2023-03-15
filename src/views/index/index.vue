@@ -22,21 +22,6 @@
       <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
         <el-card shadow="never">
           <div slot="header">
-            <span>访问量</span>
-          </div>
-          <vab-chart autoresize :options="fwl" />
-          <div class="bottom">
-            <span>
-              日均访问量:
-
-              {{ config1.endVal }}
-            </span>
-          </div>
-        </el-card>
-      </el-col>
-      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
-        <el-card shadow="never">
-          <div slot="header">
             <span>授权数</span>
           </div>
           <vab-chart autoresize :options="sqs" />
@@ -98,52 +83,7 @@
             <a @click="handleChangeTheme">
               <el-button type="danger">修改主题和布局</el-button>
             </a>
-            <!--  <el-popover placement="top" width="250" trigger="hover">
-              <p>谢谢您愿意支持开源，加群获取文档，群内提供基础模板</p>
-              <el-image :src="require('@/assets/ewm.png')"></el-image>
-              <a slot="reference" target="_blank">
-                <el-button type="warning">文档</el-button>
-              </a>
-            </el-popover> -->
           </div>
-          <table class="table">
-            <tr>
-              <td>@vue/cli版本</td>
-              <td>{{ devDependencies['@vue/cli-service'] }}</td>
-              <td>vue版本</td>
-              <td>{{ dependencies['vue'] }}</td>
-            </tr>
-            <tr>
-              <td>vuex版本</td>
-              <td>{{ dependencies['vuex'] }}</td>
-              <td>vue-router版本</td>
-              <td>{{ dependencies['vue-router'] }}</td>
-            </tr>
-            <tr>
-              <td>element-ui版本</td>
-              <td>{{ dependencies['element-ui'] }}</td>
-              <td>axios版本</td>
-              <td>{{ dependencies['axios'] }}</td>
-            </tr>
-            <tr>
-              <td>eslint版本</td>
-              <td>{{ devDependencies['eslint'] }}</td>
-              <td>prettier版本</td>
-              <td>{{ devDependencies['prettier'] }}</td>
-            </tr>
-            <tr>
-              <td>sass版本</td>
-              <td>{{ devDependencies['sass'] }}</td>
-              <td>mockjs版本</td>
-              <td>{{ dependencies['mockjs'] }}</td>
-            </tr>
-            <tr>
-              <td>layouts版本</td>
-              <td>{{ dependencies['layouts'] }}</td>
-              <td>lodash版本</td>
-              <td>{{ dependencies['lodash'] }}</td>
-            </tr>
-          </table>
         </el-card>
 
         <el-card shadow="never">
@@ -167,53 +107,30 @@
           <br />
         </el-card>
       </el-col>
-
-      <el-col :xs="24" :sm="24" :md="13" :lg="13" :xl="13">
-        <el-card class="card" shadow="never">
-          <div slot="header">
-            <span>更新日志</span>
-          </div>
-          <el-timeline :reverse="reverse">
-            <el-timeline-item
-              v-for="(activity, index) in activities"
-              :key="index"
-              :timestamp="activity.timestamp"
-              :color="activity.color"
-            >
-              {{ activity.content }}
-            </el-timeline-item>
-          </el-timeline>
-        </el-card>
-        <plan></plan>
-        <version-information></version-information>
-      </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
   import VabChart from '@/plugins/echarts'
-  import { dependencies, devDependencies } from '../../../package.json'
   import { getList } from '@/api/changeLog'
   import { getNoticeList } from '@/api/notice'
   import { getRepos, getStargazers } from '@/api/github'
-  import Plan from './components/Plan'
-  import VersionInformation from './components/VersionInformation'
+  // import Plan from './components/Plan'
+  // import VersionInformation from './components/VersionInformation'
 
   export default {
     name: 'Index',
     components: {
       VabChart,
-      Plan,
-      VersionInformation,
+      // Plan,
+      // VersionInformation,
     },
     data() {
       return {
         timer: 0,
         updateTime: process.env.VUE_APP_UPDATE_TIME,
         nodeEnv: process.env.NODE_ENV,
-        dependencies: dependencies,
-        devDependencies: devDependencies,
         config1: {
           startVal: 0,
           endVal: this.$baseLodash.random(20000, 60000),
